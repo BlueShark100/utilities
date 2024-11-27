@@ -1,6 +1,25 @@
 # Import Modules
 import os, datetime, sys
 
+# because this program uses commandline arguments specific to Linux/Unix
+# sys.platform will give us the platform we are on
+# ┍━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━┑
+# │ System              │ Value               │
+# ┝━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━┥
+# │ Linux               │ linux or linux2 (*) │
+# │ Windows             │ win32               │
+# │ Windows/Cygwin      │ cygwin              │
+# │ Windows/MSYS2       │ msys                │
+# │ Mac OS X            │ darwin              │
+# ┕━━━━━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━┙
+
+accepted_platforms = ["darwin", "linux", "linux2"]
+
+# I havent actually tested this on other platforms but hopefully it works sys.platform
+if sys.platform not in accepted_platforms:
+    print("\nThis program will only work on MacOS and Linux because of\nthe use of commandline arguments, if you think this was a\nmistake feel free to edit the program to bypass this\n")
+    exit()
+
 # this will return all the files and directorys (aka folders) in 
 # the same directory as the program as a list of strings
 files = os.listdir()  # list all the files in the same directory as the program
